@@ -1,0 +1,31 @@
+plugins {
+    id 'java'
+    id 'application'
+    id 'com.github.johnrengelman.shadow' version '8.1.1'
+}
+
+group = 'com.example'
+version = '1.0.0'
+sourceCompatibility = '17'
+
+application {
+    mainClass = 'com.example.App'
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    testImplementation 'org.junit.jupiter:junit-jupiter:5.9.2'
+}
+
+test {
+    useJUnitPlatform()
+}
+
+tasks.named('shadowJar') {
+    archiveBaseName.set(rootProject.name)
+    archiveVersion.set(project.version.toString())
+    archiveClassifier.set('all')
+}
